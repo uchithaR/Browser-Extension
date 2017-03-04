@@ -1,20 +1,23 @@
 document.addEventListener('DOMContentLoaded', function() {
-  var checkPageButton = document.getElementById('checkPage');
+	var checkPageButton = document.getElementById('checkPage');
+	checkPageButton.addEventListener('click', function() {
   
-  chrome.windows.getAll({populate:true}, getAllOpenWindows);
+	chrome.windows.getAll({populate:true}, getAllOpenWindows);
 
-function getAllOpenWindows(winData) {
+		function getAllOpenWindows(winData) {
 
-  var tabs = [];
-  for (var i in winData) {
-    if (winData[i].focused === true) {
-        var winTabs = winData[i].tabs;
-        var totTabs = winTabs.length;
-        for (var j=0; j<totTabs;j++) {
-          tabs.push(winTabs[j].url);
-        }
-    }
-  }
-  console.log(tabs);
-}
+			var tabs = [];
+			for (var i in winData) {
+				if (winData[i].focused === true) {
+					var winTabs = winData[i].tabs;
+					var totTabs = winTabs.length;
+					for (var j=0; j<totTabs;j++) {
+					tabs.push(winTabs[j].url);
+					console.log(winTabs[j].url);
+					}
+				}
+			}
+		console.log(tabs);
+		}
+	}, false);	
 }, false);
