@@ -1,7 +1,9 @@
 document.addEventListener('DOMContentLoaded', function() {
 	var checkPageButton = document.getElementById('checkPage');
 	checkPageButton.addEventListener('click', function() {
-  
+	chrome.tabs.getSelected(null, function(tab){
+    console.log("current tab is " + tab);
+	});
 	chrome.windows.getAll({populate:true}, getAllOpenWindows);
 
 		function getAllOpenWindows(winData) {
